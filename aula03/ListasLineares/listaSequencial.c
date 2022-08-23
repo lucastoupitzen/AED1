@@ -72,17 +72,3 @@ bool excluir(LISTA_SEQ * l, int ch) { //exclui o registro com a chave ch passada
     l -> numElementos--;
     return(true);
 }
-
-int main() {
-    LISTA_SEQ l; //uma nova lista é inicializada 
-    inicializa(&l);
-
-    anexar(&l, 1); //adiciona um novo registro com chave 1 na listaSequencial
-    anexar(&l, 50); 
-    anexar(&l, 60);
-
-    exibir(&l);
-}
-
-
-
