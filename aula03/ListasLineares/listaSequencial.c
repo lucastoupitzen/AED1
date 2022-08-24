@@ -65,10 +65,38 @@ bool excluir(LISTA_SEQ * l, int ch) { //exclui o registro com a chave ch passada
     }
 
     for(int i = pos; i < (l -> numElementos) - 1; i++) { 
-        // recua os elementos a partir do excluidoem uma posição
+        // recua os elementos a partir do excluido em uma posição
         l -> A[i].chave = l -> A[i + 1].chave;
     }
 
     l -> numElementos--;
     return(true);
 }
+
+int buscaBinaria(LISTA_SEQ * l, int ch) { //quando a lista está ordenada e sem espaços em branco
+
+/*A Ideia é buscar os elementos a partir do elemento central, ajustando a busca para a metade menor ou metade maior de acordo com o valor obtido na busca central.
+
+É a maneira mais eficiente de se tratar uma busca em listas sequenciais grandes de dados
+*/
+
+    int inf = 0;
+    int sup = l -> numElementos - 1;
+
+    while(inf <= sup) {
+
+        int meio = (sup + inf) / 2;
+
+        if (l -> A[meio].chave == ch){
+            return(meio);
+        } else if(l -> A[meio].chave < ch) {
+            sup = meio - 1;
+        } else {
+            inf = meio + 1;
+        }
+    } 
+
+    return(-1); //não encontrou o elemento
+}
+
+/*A atualização de dados em listas sequenciais é muito custosa, pois até todos os elementos podem ter que ser movimentados ou para direita ou para esquerda, sendo então um problema característico desse tipo de lista.*/

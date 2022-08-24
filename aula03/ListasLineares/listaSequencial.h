@@ -17,5 +17,6 @@ void exibir(LISTA_SEQ * l);
 bool anexar(LISTA_SEQ * l, int ch);
 bool excluir(LISTA_SEQ * l, int ch);
 void inicializa(LISTA_SEQ * l);
+int buscaBinaria(LISTA_SEQ * l, int ch);
 
 #endif // LISTASEQUENCIAL_H
