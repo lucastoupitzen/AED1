@@ -27,7 +27,7 @@ typedef struct {
 typedef struct {
     int inicio;
     int disponivel; //indicador de inicio da lista de disponíveis
-    REGISTRO A[max]; //100 é arbitrário
+    REGISTRO A[max]; //max é arbitrário
 } LISTA_LIG_EST; // = lista ligada estaticamente
 
 void inicializar(LISTA_LIG_EST * l) {
