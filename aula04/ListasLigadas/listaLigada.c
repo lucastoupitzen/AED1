@@ -68,6 +68,74 @@ int busca(LISTA_LIG_EST * l, int ch, int * anterior) {
     return(-1); //não achou a chave
 }
 
+int ultimo(LISTA_LIG_EST * l) {
+    int i = l -> inicio;
+    while(i != -1) {
+        if(l -> A[i].proximo == -1) return(i);
+        else i = l -> A[i].proximo;
+    }
+    return(-1);
+}
+
+void devolverNo(LISTA_LIG_EST * l, int i) { 
+    l -> A[i].proximo = l -> disponivel;
+    l -> disponivel = i;
+}
+
+bool excluir(LISTA_LIG_EST * l, int ch) { 
+    //exclusão da elemento e devolução daquela posição para lista de disponíveis
+    int ant;
+    int atual = busca(l, ch, &ant); //encontra a posição da chave atual na lista l
+    if(atual == -1) return(false); //elemento não encontrado
+    if(ant != -1) { //se tem elemento anterior ao atual
+        l -> A[ant].proximo = l -> A[atual].proximo; 
+        //proximo do anterior passa a ser o proximo do atual
+        //A ideia é linkar o elemento anterior ao seguinte do elemento que será excluido
+    } else { //é o primeiro elemento
+        l -> inicio = l -> A[atual].proximo; //o inicio passa a ser o proximo valor
+    }
+    devolverNo(l, atual);
+    return(true);
+}
+
+int obterNo(LISTA_LIG_EST * l) { //pega o nó disponível e retira sua disponibilidade
+    if(l -> disponivel == -1) return(-1);
+    int resposta = l -> disponivel;
+    l -> disponivel = l -> A[l -> disponivel].proximo;
+    return(resposta);
+}
+
+bool inserir(LISTA_LIG_EST * l, int ch) { //inserindo um novo elemento na lista ligada
+    int ant;
+    int atual = busca(l, ch, &ant); 
+    //confere se a chave já está na lista e devolve o local que será inserido
+    if(atual != -1) return(false); //Já existe
+    atual = obterNo(l);
+    if(atual == -1) return(false); //caso de vetor cheio
+    l -> A[atual].chave = ch; //pegou o endereço disponível
+    if(ant != -1) { //está no meio da lista ou no final
+        l -> A[atual].proximo = l -> A[ant].proximo;
+        l -> A[ant].proximo = atual;
+    } else { //está no começo da lista
+        l -> A[atual].proximo = l -> inicio;
+        l -> inicio = atual;
+    }
+    return(true);
+}
+
+bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
+    int i = l1 -> inicio;
+    int j = l2 -> inicio;
+    while( i != -1 && j != -1) {
+        if(l1 -> A[i].chave != l2 -> A[j].chave) return(false); //elementos diferentes
+        i = l1 -> A[i].proximo;
+        j = l2 -> A[j].proximo;
+    }
+    if( i == -1 && j == -1) return(true) //tem os mesmos elementos e mesmo tamanho
+    return(false); //tamanhos diferentes
+
+}
+
 int main() {
 
     LISTA_LIG_EST l;
