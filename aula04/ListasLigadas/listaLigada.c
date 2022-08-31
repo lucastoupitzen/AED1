@@ -46,9 +46,8 @@ void inicializar(LISTA_LIG_EST * l) {
 void exibir(LISTA_LIG_EST * l) { //exibe todas as chaves que existem
 
     int i = l -> inicio;
-
     while(i != -1) { // se a lista for vazia, inicio já vale -1
-        printf("%d", l -> A[i].chave);
+        printf("%i\n", l -> A[i].chave);
         i = l -> A[i].proximo; //passa para o próximo elemento indexado àquela chave analizada
     }
 }
@@ -139,17 +138,11 @@ bool listasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
 int main() {
 
     LISTA_LIG_EST l;
+
     inicializar(&l);
+    inserir(&l , 14);
+    inserir(&l, 64);
 
-    int anterior;
-    int x = 8;
-    for(int i = 0; i < 100; i += 2){
-        inserir(&l, i);
-    }
-    int posicao = busca(&l, x, &anterior);
-
-    if(posicao != -1) {
-        printf("%i\n", posicao);
-    } 
+    exibir(&l);
 
 }
