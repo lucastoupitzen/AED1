@@ -28,6 +28,7 @@ NO* uniao(NO* p1, NO* p2);
 // e outras funcoes auxiliares que esta
 // necessitar
 //------------------------------------------
+
 NO* uniao(NO* p1, NO* p2) {
 
 	NO* resp = NULL;
