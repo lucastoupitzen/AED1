@@ -27,7 +27,7 @@ typedef struct {
 typedef struct {
     int inicio;
     int disponivel; //indicador de inicio da lista de disponíveis
-    REGISTRO A[max]; //max é arbitrário
+    REGISTRO A[100]; //max é arbitrário
 } LISTA_LIG_EST; // = lista ligada estaticamente
 
 void inicializar(LISTA_LIG_EST * l) {
@@ -123,7 +123,7 @@ bool inserir(LISTA_LIG_EST * l, int ch) { //inserindo um novo elemento na lista 
     return(true);
 }
 
-bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
+bool listasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
     int i = l1 -> inicio;
     int j = l2 -> inicio;
     while( i != -1 && j != -1) {
@@ -131,7 +131,7 @@ bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
         i = l1 -> A[i].proximo;
         j = l2 -> A[j].proximo;
     }
-    if( i == -1 && j == -1) return(true) //tem os mesmos elementos e mesmo tamanho
+    if( i == -1 && j == -1) return(true); //tem os mesmos elementos e mesmo tamanho
     return(false); //tamanhos diferentes
 
 }
@@ -142,8 +142,12 @@ int main() {
     inicializar(&l);
 
     int anterior;
-    int x = 25;
+    int x = 8;
+    for(int i = 0; i < 100; i += 2){
+        inserir(&l, i);
+    }
     int posicao = busca(&l, x, &anterior);
+
     if(posicao != -1) {
         printf("%i\n", posicao);
     } 
