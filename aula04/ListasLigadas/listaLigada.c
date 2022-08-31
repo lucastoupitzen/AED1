@@ -27,7 +27,7 @@ typedef struct {
 typedef struct {
     int inicio;
     int disponivel; //indicador de inicio da lista de disponíveis
-    REGISTRO A[max]; //max é arbitrário
+    REGISTRO A[100]; //max é arbitrário
 } LISTA_LIG_EST; // = lista ligada estaticamente
 
 void inicializar(LISTA_LIG_EST * l) {
@@ -46,9 +46,8 @@ void inicializar(LISTA_LIG_EST * l) {
 void exibir(LISTA_LIG_EST * l) { //exibe todas as chaves que existem
 
     int i = l -> inicio;
-
     while(i != -1) { // se a lista for vazia, inicio já vale -1
-        printf("%d", l -> A[i].chave);
+        printf("%i\n", l -> A[i].chave);
         i = l -> A[i].proximo; //passa para o próximo elemento indexado àquela chave analizada
     }
 }
@@ -123,7 +122,7 @@ bool inserir(LISTA_LIG_EST * l, int ch) { //inserindo um novo elemento na lista 
     return(true);
 }
 
-bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
+bool listasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
     int i = l1 -> inicio;
     int j = l2 -> inicio;
     while( i != -1 && j != -1) {
@@ -131,7 +130,7 @@ bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
         i = l1 -> A[i].proximo;
         j = l2 -> A[j].proximo;
     }
-    if( i == -1 && j == -1) return(true) //tem os mesmos elementos e mesmo tamanho
+    if( i == -1 && j == -1) return(true); //tem os mesmos elementos e mesmo tamanho
     return(false); //tamanhos diferentes
 
 }
@@ -139,13 +138,11 @@ bool lisasIguais(LISTA_LIG_EST * l1, LISTA_LIG_EST * l2 ) {
 int main() {
 
     LISTA_LIG_EST l;
-    inicializar(&l);
 
-    int anterior;
-    int x = 25;
-    int posicao = busca(&l, x, &anterior);
-    if(posicao != -1) {
-        printf("%i\n", posicao);
-    } 
+    inicializar(&l);
+    inserir(&l , 14);
+    inserir(&l, 64);
+
+    exibir(&l);
 
 }
