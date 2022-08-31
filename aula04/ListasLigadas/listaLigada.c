@@ -77,8 +77,12 @@ int ultimo(LISTA_LIG_EST * l) {
 }
 
 void devolverNo(LISTA_LIG_EST * l, int i) { 
-    l -> A[i].proximo = l -> disponivel;
-    l -> disponivel = i;
+    l -> A[i].proximo = l -> disponivel; // A[atual].proximo recebe uma casa disponível
+    l -> disponivel = i; //a posição do item excluido para a estar disponível
+    /*
+    Esse método torna a casa do elemento excluído disponível para uso novamente, sem perder o 
+    elemento disponível anteriormente, que ficará salvo no .proximo
+    */
 }
 
 bool excluir(LISTA_LIG_EST * l, int ch) { 
@@ -98,8 +102,8 @@ bool excluir(LISTA_LIG_EST * l, int ch) {
 }
 
 int obterNo(LISTA_LIG_EST * l) { //pega o nó disponível e retira sua disponibilidade
-    if(l -> disponivel == -1) return(-1);
-    int resposta = l -> disponivel;
+    if(l -> disponivel == -1) return(-1); //lista cheia
+    int resposta = l -> disponivel; // resposta será a casa disponível
     l -> disponivel = l -> A[l -> disponivel].proximo;
     return(resposta);
 }

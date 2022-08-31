@@ -13,7 +13,6 @@ typedef struct {
 
 void inicializar(LISTA_LIG_DIN * l) {
     l -> inicio = NULL; //aponta para um endereço de memória inválido
-
 }
 
 int contar(LISTA_LIG_DIN * l) {
