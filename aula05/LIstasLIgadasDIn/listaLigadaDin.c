@@ -25,6 +25,8 @@ int contar(LISTA_LIG_DIN * l) {
     return(resp);
 }
 
+
+
 /*
 
 malloc (sizeof(NO)) -> aloca um nó em memória sempre que possível
@@ -52,6 +54,54 @@ void anexar(LISTA_LIG_DIN * l, int ch) {
     if(ant) ant -> prox = novo; //a lista não está vazia
     else l -> inicio = novo; //anexando o primeiro elemento da lista
     
+}
+
+/*Dada uma lista l e um ponteiro pra um elemento existente, mover o elemento para a primeira posição da lista*/
+void moverParaFrente(LISTA_LIG_DIN* l, NO* p) {
+
+    if( p == l -> inicio) return; //já está na posição desejada
+    NO* ant;
+    NO* pos = busca(l, p -> chave, &ant); //implementada no EP
+    ant -> prox = p -> prox;
+    p -> prox = l -> inicio;
+    l -> inicio = p;
+    return;
+
+}
+
+void destruir(LISTA_LIG_DIN * l) {
+    NO* p = l -> inicio;
+    while(p) {
+        NO * seguinte = p -> prox; /* é a forma em que podemos acessar o valor prox.
+        O p depois do free estaria descaracterizado */
+        free(p);
+        p = seguinte;
+    }
+    l -> inicio = NULL; // permite reutilizar a lista
+}
+
+LISTA_LIG_DIN* copia(LISTA_LIG_DIN * l) { //retorna uma copia da lista passada
+
+    LISTA_LIG_DIN  resp;
+    resp.inicio = NULL;
+    NO* p = l -> inicio;
+    NO* ultimo = NULL; //guarda o anterior da próxima inserção
+    while (p)
+    {
+        NO* novo = (NO*) malloc(sizeof(NO));
+        novo -> chave = p -> chave;
+        novo -> prox = NULL;
+        if(!resp.inicio) { //caso a lista resp esteja vazia
+            resp.inicio = novo;
+        }
+        if(ultimo) {
+            ultimo -> prox = novo; 
+        }
+        ultimo = novo;
+    }
+    
+    return(&resp); 
+
 }
 
 int main() {
