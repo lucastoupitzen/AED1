@@ -79,7 +79,6 @@ bool inserir(NO** pInicial, int valorInserido) {
             novo -> prox = ant -> prox;
             ant -> prox = novo;
         }
-        
     }
     return(true);
 }
@@ -121,52 +120,16 @@ int main() {
 
     //lista teste 1
     inserir(&p1, 10);
-    inserir(&p1, 9);
-    inserir(&p1, 12);
+    inserir(&p1, 90);
+    inserir(&p1, 112);
     inserir(&p1, 13);
-    // p1 -> valor = 10;   
-    // NO* p11 = (NO*) malloc(sizeof(NO*));
-    // p1 -> prox = p11;
-
-    // p11 -> valor = 11;
-    // NO* p12 = (NO*) malloc(sizeof(NO*));
-    // p11 -> prox = p12;
-
-    // p12 -> valor = 12;
-    // NO* p13 = (NO*) malloc(sizeof(NO*));
-    // p12 -> prox = p13;
-
-    // p13 -> valor = 13;
-    // NO* p14 = (NO*) malloc(sizeof(NO*));
-    // p13 -> prox = p14;
-
-    // p14 -> valor = 14;
-    // p14 -> prox = NULL;
     
 	//lista teste 2
     inserir(&p2, 13);
-    inserir(&p2, 21);
-    inserir(&p2, 22);
+    inserir(&p2, 29);
+    inserir(&p2, 500);
     inserir(&p2, 23);
 
-    // p2 -> valor = 20;
-    // NO* p21 = (NO*) malloc(sizeof(NO*));
-    // p2 -> prox = p21;
-
-    // p21 -> valor = 21;
-    // NO* p22 = (NO*) malloc(sizeof(NO*));
-    // p21 -> prox = p22;
-
-    // p22 -> valor = 22;
-    // NO* p23 = (NO*) malloc(sizeof(NO*));
-    // p22 -> prox = p23;
-
-    // p23 -> valor = 23;
-    // NO* p24 = (NO*) malloc(sizeof(NO*));
-    // p23 -> prox = p24;
-
-    // p24 -> valor = 24;
-    // p24 -> prox = NULL;
 
 	// o EP sera testado com chamadas deste tipo
 	NO* teste = NULL;
